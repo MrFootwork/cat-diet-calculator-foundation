@@ -2,13 +2,12 @@ export default class Database {
 	private _rawData
 	private static instance: Database
 
-	private constructor(data) {
-		this._rawData = data
-	}
+	private constructor() {}
 
-	static getInstance(data) {
+	static getInstance() {
 		if (!Database.instance) {
-			Database.instance = new Database(data)
+			Database.instance = new Database()
+			Database.instance.fetchMongo()
 		}
 		return Database.instance
 	}
@@ -21,11 +20,13 @@ export default class Database {
 		return this._rawData
 	}
 
-	async fetchDatabase() {
+	async fetchMongo() {
 		const data = await fetch('api/getData')
-		console.log('data: ', data)
 		let json = await data.json()
-		console.log('json: ', json)
 		this._rawData = json
+	}
+
+	async resetDB() {
+		await fetch('api/resetDB')
 	}
 }

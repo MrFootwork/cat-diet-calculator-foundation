@@ -1,8 +1,8 @@
 <template>
   <div>
     {{ db.data }}
-    <button @click="updateData"> Update Data </button>
-    <button @click="reset"> Reset </button>
+    <button @click="fetchData"> Update Data </button>
+    <button @click="reset"> Reset Database </button>
   </div>
 </template>
 
@@ -21,14 +21,15 @@ const mockData = [
     age: 22,
   },
 ]
-const db = ref(Database.getInstance(mockData))
 
-function reset() {
-  db.value.data = mockData
+const db = ref(Database.getInstance())
+
+async function fetchData() {
+  await db.value.fetchMongo()
 }
 
-async function updateData() {
-  await db.value.fetchDatabase()
+async function reset() {
+  await db.value.resetDB()
 }
 </script>
 
