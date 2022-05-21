@@ -6,21 +6,9 @@
   </div>
 </template>
 
-
 <script setup lang="ts">
-import Database from '~/model/Database'
+import Database from '~/model/database'
 import { ref } from 'vue'
-
-const mockData = [
-  {
-    name: 'data1',
-    age: 11,
-  },
-  {
-    name: 'data2',
-    age: 22,
-  },
-]
 
 const db = ref(Database.getInstance())
 

@@ -7,7 +7,6 @@ export default class Database {
 	static getInstance() {
 		if (!Database.instance) {
 			Database.instance = new Database()
-			Database.instance.fetchMongo()
 		}
 		return Database.instance
 	}
@@ -21,9 +20,14 @@ export default class Database {
 	}
 
 	async fetchMongo() {
-		const data = await fetch('api/getData')
-		let json = await data.json()
-		this._rawData = json
+		try {
+			const data = await fetch('api/getData')
+			let json = await data.json()
+			this._rawData = json
+		} catch (e) {
+			console.log('could not fetch MongoDB: ', e)
+			this._rawData = null
+		}
 	}
 
 	async resetDB() {
