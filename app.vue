@@ -1,15 +1,21 @@
 <template>
   <div>
-    dryProcessor:
-    {{ dryProcessor.data }}
+    <div>
+      <h5>dryProcessor:</h5>
+      <p> {{ dryProcessor.data }} </p>
+    </div>
+    <div>
+      <h5> wetProcessor:</h5>
+      <p>{{ wetProcessor.data }}</p>
+    </div>
+    <div>
+      <h5>db:</h5>
+      <p> {{ db.data }}</p>
+    </div>
 
-    wetProcessor:
-    {{ wetProcessor.data }}
-
-    db:
-    {{ db.data }}
     <button @click="fetchData"> Update Data </button>
     <button @click="reset"> Reset Database </button>
+
   </div>
 </template>
 
